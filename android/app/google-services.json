@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "448796864751",
+    "firebase_url": "https://gsm-mall.firebaseio.com",
+    "project_id": "gsm-mall",
+    "storage_bucket": "gsm-mall.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448796864751:android:da2ef571af85743825eb1a",
+        "android_client_info": {
+          "package_name": "com.project.gsm_mall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448796864751-k1t3tjtt26k304sak1c4fhgrnqfnc9ad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApRYD0h-tjFt9zslvj6zvTn-h9WUagos0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448796864751-k1t3tjtt26k304sak1c4fhgrnqfnc9ad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

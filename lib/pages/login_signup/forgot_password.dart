@@ -20,10 +20,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Column(
               children: <Widget>[
                 SizedBox(height: 100.0),
-                Image.asset(
+               /* Image.asset(
                   'assets/logo/stylo_transparent.png',
                   height: 80.0,
-                ),
+                ),*/
                 SizedBox(
                   height: 25.0,
                 ),
@@ -67,7 +67,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         height: 45.0,
                         width: 180.0,
                         child: Material(
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius: BorderRadius.circular(10.0),
                           shadowColor: Colors.redAccent,
                           color: Colors.red,
                           elevation: 7.0,

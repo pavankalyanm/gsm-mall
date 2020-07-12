@@ -3,8 +3,9 @@ import 'dart:io';
 import 'package:fancy_on_boarding/fancy_on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:gsm_mall/pages/login_signup/login.dart';
+import 'package:page_transition/page_transition.dart';
+//import 'package:gsm_mall/authenticate/login.dart';
 
 class OnBoardong extends StatefulWidget {
   @override
@@ -101,13 +102,13 @@ class _OnBoardongState extends State<OnBoardong> {
           Navigator.push(
               context,
               PageTransition(
-                  type: PageTransitionType.rightToLeft, child: LoginPage()));
+                  type: PageTransitionType.rightToLeft, child: Login()));
         },
         onDoneButtonPressed: () {
           Navigator.push(
               context,
               PageTransition(
-                  type: PageTransitionType.rightToLeft, child: LoginPage()));
+                  type: PageTransitionType.rightToLeft, child: Login()));
         },
       ),
       onWillPop: onWillPop,

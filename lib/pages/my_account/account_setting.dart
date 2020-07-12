@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gsm_mall/pages/login_signup/login.dart';
+//import 'package:gsm_mall/authenticate/login.dart';
 
 class AccountSetting extends StatefulWidget {
   @override
@@ -100,7 +101,7 @@ class _AccountSettingState extends State<AccountSetting> {
           InkWell(
             onTap: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => LoginPage()));
+                  context, MaterialPageRoute(builder: (context) => Login()));
             },
             child: Container(
               margin: EdgeInsets.only(top: 5.0, bottom: 5.0),

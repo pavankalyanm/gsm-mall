@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gsm_mall/pages/login_signup/login.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:gsm_mall/pages/faq_and_about_app/about_app.dart';
 import 'package:gsm_mall/pages/faq_and_about_app/faq.dart';
-import 'package:gsm_mall/pages/login_signup/login.dart';
+//import 'package:gsm_mall/authenticate/login.dart';
 import 'package:gsm_mall/pages/my_account/account_setting.dart';
 import 'package:gsm_mall/pages/my_orders.dart';
 import 'package:gsm_mall/pages/notification.dart';
@@ -261,7 +262,7 @@ class _MyAccountState extends State<MyAccount> {
           InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginPage()));
+                  MaterialPageRoute(builder: (context) => Login()));
             },
             child: Container(
               padding: EdgeInsets.all(16.0),

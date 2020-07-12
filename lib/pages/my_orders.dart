@@ -7,20 +7,8 @@ class MyOrders extends StatefulWidget {
 
 class _MyOrdersState extends State<MyOrders> {
   final cartItemList = [
-    {
-      'status': 1,
-      'title': 'Men Slim Fit Casual Shirt',
-      'image': 'assets/products/product_11.jpg',
-      'price': 57,
-      'size': 'L'
-    },
-    {
-      'status': 2,
-      'title': 'Solid Round Neck T-shirt',
-      'image': 'assets/products/product_21.jpg',
-      'price': 71,
-      'size': 'M'
-    },
+  
+    
     {
       'status': 3,
       'title': 'Solid Shirt Style Top',
@@ -169,7 +157,7 @@ class _MyOrdersState extends State<MyOrders> {
                                             width: 10.0,
                                           ),
                                           Text(
-                                            '\$${item['price']}',
+                                            '\Rs.${item['price']}',
                                             style: TextStyle(
                                               color: Colors.blue,
                                               fontSize: 15.0,

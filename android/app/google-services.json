@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:448796864751:android:da2ef571af85743825eb1a",
+        "mobilesdk_app_id": "1:448796864751:android:55e9e382e866dfa225eb1a",
         "android_client_info": {
-          "package_name": "com.project.gsm_mall"
+          "package_name": "com.example.gsm_mall"
         }
       },
       "oauth_client": [

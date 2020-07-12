@@ -54,9 +54,9 @@ class _PaymentPageState extends State<PaymentPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Choose your payment method',
+                  'Select Payment Method',
                   style: TextStyle(
-                      fontSize: 30.0,
+                      fontSize: 20.0,
                       color: Colors.grey,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Alatsi',
@@ -66,7 +66,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 SizedBox(
                   height: 20.0,
                 ),
-                Container(
+               /* Container(
                   width: width - 40.0,
                   margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
                   child: RadioListTile(
@@ -89,7 +89,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       width: 45.0,
                     ),
                   ),
-                ),
+                ),*/
                 Divider(
                   height: 1.0,
                 ),
@@ -120,7 +120,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 Divider(
                   height: 1.0,
                 ),
-                Container(
+                /*Container(
                   width: width - 40.0,
                   margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
                   child: RadioListTile(
@@ -170,7 +170,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       width: 40.0,
                     ),
                   ),
-                ),
+                ),*/
                 SizedBox(
                   height: 40.0,
                 ),
@@ -187,10 +187,10 @@ class _PaymentPageState extends State<PaymentPage> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: Colors.red,
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: Text(
-                        'PAY',
+                        'CONFIRM ORDER',
                         style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Jost',
@@ -245,7 +245,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   height: 20.0,
                 ),
                 Text(
-                  "YUPPY !!",
+                  "HURRAY !!",
                   style: TextStyle(
                     fontFamily:'Jost',
                     letterSpacing: 0.7,
@@ -257,7 +257,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   height: 20.0,
                 ),
                 Text(
-                  "Your Payment Received.",
+                  "Your ORDER Received.",
                   style: TextStyle(fontSize: 18.0, color: Colors.grey),
                 ),
               ],
@@ -267,7 +267,7 @@ class _PaymentPageState extends State<PaymentPage> {
       },
     );
 
-    Future.delayed(const Duration(milliseconds: 1000), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       setState(() {
         Navigator.push(
           context,

@@ -42,7 +42,7 @@ class CategorySlider extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CategoryMain()),
+                  MaterialPageRoute(builder: (context) => CatogeryFemale()),
                 );
               },
             ),
@@ -52,6 +52,40 @@ class CategorySlider extends StatelessWidget {
               child: Image(
                 image: AssetImage(
                   'assets/kids_category.jpg',
+                ),
+                fit: BoxFit.fitHeight,
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CategoryKids()),
+                );
+              },
+            ),
+           
+           
+            SizedBox(width: 5.0),
+             InkWell(
+              child: Image(
+                image: AssetImage(
+                  'assets/beauty_category.jpg',
+                ),
+                fit: BoxFit.fitHeight,
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CategoryMain()),
+                );
+              },
+            ),
+           
+           
+            SizedBox(width: 5.0),
+             InkWell(
+              child: Image(
+                image: AssetImage(
+                  'assets/jewellery_category.jpg',
                 ),
                 fit: BoxFit.fitHeight,
               ),

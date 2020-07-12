@@ -53,7 +53,7 @@ class _SearchState extends State<Search> {
                   padding:
                       const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 20.0),
                   child: Text(
-                    'POPULAR ON STYLO',
+                    'POPULAR ON STYLE',
                     style: TextStyle(
                       fontFamily: 'Jost',
                       fontSize: 17.0,

@@ -32,8 +32,9 @@ class _ProductListViewState extends State<ProductListView> {
                 color: Colors.black,
               ),
             ),
-            Text(
-              '37024 ITEMS',
+            /*Text(
+              //ITEMS.LENGTH
+              '',
               style: TextStyle(
                 fontFamily: 'Jost',
                 fontWeight: FontWeight.bold,
@@ -41,7 +42,7 @@ class _ProductListViewState extends State<ProductListView> {
                 letterSpacing: 1.5,
                 color: Colors.grey,
               ),
-            )
+            )*/
           ],
         ),
         titleSpacing: 0.0,
@@ -61,18 +62,12 @@ class _ProductListViewState extends State<ProductListView> {
             },
           ),
           IconButton(
-            icon: Badge(
-              badgeContent: Text(
-                //CART QTY
-                '0',
-                style: TextStyle(color: Colors.white),
-              ),
-              badgeColor: Theme.of(context).primaryColorLight,
-              child: Icon(
+            
+            icon:  Icon(
                 Icons.favorite_border,
                 color: Colors.black,
               ),
-            ),
+           
             onPressed: () {
               Navigator.push(
                 context,
@@ -81,18 +76,12 @@ class _ProductListViewState extends State<ProductListView> {
             },
           ),
           IconButton(
-            icon: Badge(
-              badgeContent: Text(
-                //WISHLIST QTY
-                '3',
-                style: TextStyle(color: Colors.white),
-              ),
-              badgeColor: Theme.of(context).primaryColorLight,
-              child: Icon(
+          
+              icon: Icon(
                 FontAwesomeIcons.shoppingBag,
                 color: Colors.black,
               ),
-            ),
+           
             onPressed: () {
               Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: CartPage()));
             },

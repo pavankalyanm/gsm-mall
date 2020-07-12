@@ -245,7 +245,7 @@ class Products {
   int productId;
   String productImage;
   String productTitle;
-  String productPrice;
+  int productPrice;
   String productOldPrice;
   String offerText;
 

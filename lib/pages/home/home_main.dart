@@ -18,6 +18,9 @@ import 'package:gsm_mall/pages/home/home_component/top_category_grid.dart';
 import 'package:gsm_mall/pages/notification.dart';
 import 'package:gsm_mall/pages/search.dart';
 import 'package:gsm_mall/pages/wishlist.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+//import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
 
 class HomeMain extends StatefulWidget {
   @override
@@ -36,6 +39,19 @@ class _HomeMainState extends State<HomeMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+     /* bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.blueAccent,
+        items: <Widget>[
+          Icon(Icons.add, size: 30),
+          Icon(Icons.list, size: 30),
+          Icon(Icons.compare_arrows, size: 30),
+        ],
+        onTap: (index) {
+          //Handle button tap
+        },
+      ),
+*/
       backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
          
@@ -81,17 +97,12 @@ class _HomeMainState extends State<HomeMain> {
             },
           ),*/
           IconButton(
-            icon: Badge(
-              badgeContent: Text(
-                '0',
-                style: TextStyle(color: Colors.white),
-              ),
-              badgeColor: Theme.of(context).primaryColorLight,
-              child: Icon(
+            
+              icon: Icon(
                 Icons.favorite_border,
                 color: Colors.black,
               ),
-            ),
+           
             onPressed: () {
               Navigator.push(
                 context,
@@ -100,17 +111,12 @@ class _HomeMainState extends State<HomeMain> {
             },
           ),
           IconButton(
-            icon: Badge(
-              badgeContent: Text(
-                '0',
-                style: TextStyle(color: Colors.white),
-              ),
-              badgeColor: Theme.of(context).primaryColorLight,
-              child: Icon(
+           
+              icon: Icon(
                 FontAwesomeIcons.shoppingBag,
                 color: Colors.black,
               ),
-            ),
+          
             onPressed: () {
               Navigator.push(
                   context,
@@ -175,9 +181,12 @@ class _HomeMainState extends State<HomeMain> {
             // Kids Apparels End
           ],
         ),
+
         onWillPop: onWillPop,
       ),
+      // bottomNavigationBar: Bottomnavbar(),
     );
+
   }
 
   Future<bool> onWillPop() {
@@ -192,3 +201,72 @@ class _HomeMainState extends State<HomeMain> {
     return Future.value(true);
   }
 }
+
+
+/*class Bottomnavbar extends StatefulWidget {
+  @override
+  _BottomnavbarState createState() => _BottomnavbarState();
+}
+
+class _BottomnavbarState extends State<Bottomnavbar> {
+  int _currentIndex = 0;
+  PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    
+      body: SizedBox.expand(
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() => _currentIndex = index);
+          },
+          children: <Widget>[
+            Container(child: HomeMain()),
+            Container(color: Colors.red,),
+            Container(color: Colors.green,),
+            Container(color: Colors.blue,),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: _currentIndex,
+        onItemSelected: (index) {
+          setState(() => _currentIndex = index);
+          _pageController.jumpToPage(index);
+        },
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+            title: Text('Item One'),
+            icon: Icon(Icons.home)
+          ),
+          BottomNavyBarItem(
+            title: Text('Item One'),
+            icon: Icon(Icons.apps)
+          ),
+          BottomNavyBarItem(
+            title: Text('Item One'),
+            icon: Icon(Icons.chat_bubble)
+          ),
+          BottomNavyBarItem(
+            title: Text('Item One'),
+            icon: Icon(Icons.settings)
+          ),
+        ],
+      ),
+    );
+  }
+}*/

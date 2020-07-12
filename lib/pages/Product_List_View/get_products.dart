@@ -1,11 +1,14 @@
+import 'package:firebase/firebase.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
+//import 'dart:convert';
 import 'dart:async' show Future, Timer;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // My Own Imports
 import 'package:gsm_mall/pages/Product_List_View/filter_row.dart';
+import 'package:gsm_mall/pages/product/get_similar_products.dart';
 import 'package:gsm_mall/pages/product/product.dart';
 
 class GetProducts extends StatefulWidget {
@@ -15,7 +18,7 @@ class GetProducts extends StatefulWidget {
 
 class _GetProductsState extends State<GetProducts> {
   bool loading = true, all = true, men = false, women = false;
-
+ 
   @override
   void initState() {
     Timer(const Duration(milliseconds: 2000), () {
@@ -38,8 +41,9 @@ class _GetProductsState extends State<GetProducts> {
             child: SpinKitRipple(color: Colors.red),
           )
         : FutureBuilder<List<Products>>(
-            future: loadProducts(selected),
+         
             builder: (context, snapshot) {
+              
               if (snapshot.hasError) print(snapshot.error);
 
               return snapshot.hasData
@@ -215,11 +219,19 @@ class ProductsGridView extends StatefulWidget {
 }
 
 class _ProductsGridViewState extends State<ProductsGridView> {
+
+ Future getProducts()async{
+    var firestore=Firestore.instance;
+    QuerySnapshot qn = await firestore.collection("products").getDocuments();
+    return qn.documents;
+  }
+
   InkWell getStructuredGridCell(Products products) {
     double height = MediaQuery.of(context).size.height;
     return InkWell(
+      
       child: Container(
-        //margin: EdgeInsets.all(5.0),
+        // margin: EdgeInsets.all(5.0),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -264,7 +276,7 @@ class _ProductsGridViewState extends State<ProductsGridView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "\₹${products.productPrice}",
+                        "\$${products.productPrice}",
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
@@ -277,7 +289,7 @@ class _ProductsGridViewState extends State<ProductsGridView> {
                         width: 6.0,
                       ),
                       Text(
-                        "\₹${products.productOldPrice}",
+                        "\$${products.productOldPrice}",
                         style: TextStyle(
                             fontSize: 13.0,
                             decoration: TextDecoration.lineThrough,
@@ -324,19 +336,49 @@ class _ProductsGridViewState extends State<ProductsGridView> {
 
   @override
   Widget build(BuildContext context) {
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return GridView.count(
-      shrinkWrap: true,
-      primary: false,
-      crossAxisSpacing: 0,
-      mainAxisSpacing: 0,
-      crossAxisCount: 2,
-      childAspectRatio: ((width) / (height - 190.0)),
-      children: List.generate(widget.products.length, (index) {
-        return getStructuredGridCell(widget.products[index]);
-      }),
-    );
+  return Container(
+
+       child: FutureBuilder(
+         future: getProducts(),
+         builder: (_,snapshot){
+         if(snapshot.connectionState==ConnectionState.waiting){
+                 return Center(
+                   child: SpinKitDoubleBounce(color: Colors.red,),
+                 );
+               }else{
+                 
+                 return GridView.count(
+                    shrinkWrap: true,
+                    primary: false,
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0,
+                    crossAxisCount: 2,
+                    childAspectRatio: ((width) / (height - 190.0)),
+                    children: List.generate(snapshot.data.length, (index) {
+                      Products products=Products(snapshot.data[index].data['productId'],snapshot.data[index].data['productImage'],snapshot.data[index].data['productTitle'],snapshot.data[index].data['price'],snapshot.data[index].data['oldPrice'],snapshot.data[index].data['offer'],snapshot.data[index].data['uniqueId']);
+                      return getStructuredGridCell(snapshot.data[index]);
+                    }),
+
+
+                 );
+                 
+
+
+
+               }
+      },),
+
+
+
+  );
+      
+   
+
+     
+    
   }
 }
 
@@ -344,7 +386,7 @@ class Products {
   int productId;
   String productImage;
   String productTitle;
-  String productPrice;
+  int productPrice;
   String productOldPrice;
   String offerText;
   final String uniqueId;
@@ -353,7 +395,7 @@ class Products {
       this.productPrice, this.productOldPrice, this.offerText, this.uniqueId);
 }
 
-Future<List<Products>> loadProducts(selected) async {
+/*Future<List<Products>> loadProducts(selected) async {
   if (selected == 'all') {
     var jsonString = await rootBundle.loadString('assets/json/products.json');
     final jsonResponse = json.decode(jsonString);
@@ -399,13 +441,13 @@ Future<List<Products>> loadProducts(selected) async {
 
     return products;
   }
-}
+}*/
 
 class PassDataToProduct {
   final String title;
   final int productId;
   final String imagePath;
-  final String price;
+  final int price;
   final String oldPrice;
   final String offer;
   final String uniqueId;

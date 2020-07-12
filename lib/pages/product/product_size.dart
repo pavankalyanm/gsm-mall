@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gsm_mall/pages/product/product.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:gsm_mall/pages/product/size_chart.dart';
 
 class ProductSize extends StatefulWidget {
+
+  
   @override
   _ProductSizeState createState() => _ProductSizeState();
 }
@@ -16,6 +19,9 @@ class _ProductSizeState extends State<ProductSize> {
 
   @override
   Widget build(BuildContext context) {
+    String s='L';
+    Passproductsize product=new Passproductsize('L');
+
     return Container(
       margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
       padding: EdgeInsets.all(10.0),
@@ -101,6 +107,8 @@ class _ProductSizeState extends State<ProductSize> {
                 onTap: () {
                   setState(() {
                     if (!xsSize) {
+                      Product product=new Product('XS');
+                      ProductPage(productsize:Passproductsize(product.size) ,);
                       xsSize = true;
                       sSize = false;
                       mSize = false;
@@ -132,6 +140,9 @@ class _ProductSizeState extends State<ProductSize> {
                 onTap: () {
                   setState(() {
                     if (!sSize) {
+                      s="S";
+                      Product product=new Product('S');
+                      ProductPage(productsize:Passproductsize(s) ,);
                       sSize = true;
                       xsSize = false;
                       mSize = false;
@@ -163,6 +174,9 @@ class _ProductSizeState extends State<ProductSize> {
                 onTap: () {
                   setState(() {
                     if (!mSize) {
+                      Product product=new Product('M');
+
+                      ProductPage(productsize:Passproductsize(product.size) ,);
                       mSize = true;
                       xsSize = false;
                       sSize = false;
@@ -194,6 +208,11 @@ class _ProductSizeState extends State<ProductSize> {
                 onTap: () {
                   setState(() {
                     if (!lSize) {
+                     // Passproductsize product=new Passproductsize('L');
+                     product.pdtsize='l';
+
+                      new ProductPage(productsiz:s ,);
+                    //  print(Passproductsize('l'));
                       lSize = true;
                       xsSize = false;
                       sSize = false;
@@ -340,4 +359,28 @@ class _ProductSizeState extends State<ProductSize> {
       ),
     );
   }
+}
+
+class Product{
+String size;
+
+  Product(String size){
+    this.size=size;
+  }
+  
+}
+
+class Passproductsize {
+   String size;
+
+  Passproductsize(String size){
+    this.size=size;
+  }
+  String get pdtsize {
+      return size; 
+   } 
+    
+   void set pdtsize(String size) {
+      this.size = size;
+   }
 }

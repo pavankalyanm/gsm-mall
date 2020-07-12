@@ -9,19 +9,14 @@ class WishlistPage extends StatefulWidget {
 }
 
 class _WishlistPageState extends State<WishlistPage> {
-  int wishlistItem = 2;
+  int wishlistItem = 1;
 
   final wishlistItemList = [
-    {
-      'title': 'Solid Round Neck T-shirt',
-      'image': 'assets/products/product_21.jpg',
-      'price': 49,
-      'size': 'L'
-    },
+   
     {
       'title': 'Men Slim Fit Casual Shirt',
       'image': 'assets/products/product_11.jpg',
-      'price': 39,
+      'price': 390,
       'size': 'M'
     }
   ];

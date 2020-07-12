@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gsm_mall/pages/Category/category_main.dart';
+import 'package:gsm_mall/pages/Category/maincategory.dart';
 import 'package:gsm_mall/pages/cart.dart';
 import 'package:gsm_mall/pages/faq_and_about_app/about_app.dart';
 import 'package:gsm_mall/pages/faq_and_about_app/faq.dart';
 import 'package:gsm_mall/pages/login_signup/login.dart';
+//import 'package:gsm_mall/authenticate/login.dart';
+
 import 'package:gsm_mall/pages/my_account/my_account.dart';
 import 'package:gsm_mall/pages/my_orders.dart';
 import 'package:gsm_mall/pages/notification.dart';
@@ -55,7 +58,7 @@ class MainDrawer extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => Login()),
                   );
                 },
               ),
@@ -70,22 +73,38 @@ class MainDrawer extends StatelessWidget {
       child: SafeArea(
         child: ListView(
           children: <Widget>[
-            Container(
-              height: 200.0,
+            GestureDetector(
+              
+           child: Container(
+              height: 150.0,
+              
               decoration: BoxDecoration(
-                color: Colors.pink[200],
-                borderRadius: BorderRadius.circular(16),
+                
+                image: new DecorationImage(image: new AssetImage('assets/containerback.jpg'),
+                fit: BoxFit.cover,
+                ),
+                
+                borderRadius: BorderRadius.circular(0),
                 
                 
               ),
              child: Center(
                 child: Text(
-                "LOGIN . SIGNUP             >",
+                "LOGIN . SIGNUP    >",
                 style: TextStyle(
-                  color: Colors.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
              ),
+            ),
+            onTap: (){
+               Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Login()),
+                );
+            },
             ),
             SizedBox(
                       height: 10.0,
@@ -118,10 +137,10 @@ class MainDrawer extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+               /* Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CategoryMain()),
-                );
+                  MaterialPageRoute(builder: (context) => Maincategory()),
+                );*/
               },
             ),
             Divider(
@@ -131,7 +150,7 @@ class MainDrawer extends StatelessWidget {
                         
             ),
 
-         /*   InkWell(
+           InkWell(
               child: Container(
                 padding: EdgeInsets.only(top: 7.0, bottom: 7.0, left: 15.0, right: 15.0),
                 child: Text(
@@ -170,7 +189,7 @@ class MainDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CategoryMain()),
+                  MaterialPageRoute(builder: (context) => CatogeryFemale()),
                 );
               },
             ),
@@ -192,7 +211,7 @@ class MainDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CategoryMain()),
+                  MaterialPageRoute(builder: (context) => CategoryKids()),
                 );
               },
             ),
@@ -203,7 +222,7 @@ class MainDrawer extends StatelessWidget {
                         thickness: 0.5,
                         color: Colors.black.withOpacity(0.5),
             ),
-            */
+          
             InkWell(
               child: Container(
                 padding: EdgeInsets.only(top: 10.0, bottom: 7.0, left: 15.0),
@@ -318,10 +337,10 @@ class MainDrawer extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+               /* Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MyAccount()),
-                );
+                );*/
               },
             ),
 
@@ -372,10 +391,10 @@ class MainDrawer extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+              /*  Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => FaqPage()),
-                );
+                );*/
               },
             ),
            

@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:gsm_mall/models/cartmodel.dart';
+import 'package:gsm_mall/widgets/cartitem.dart';
 import 'package:page_transition/page_transition.dart';
 
 // My Own Imports
 import 'package:gsm_mall/pages/home/home_main.dart';
 import 'package:gsm_mall/pages/order_payment/delivery_address.dart';
+import 'package:provider/provider.dart';
 
 class CartPage extends StatefulWidget {
+  
+
   @override
   _CartPageState createState() => _CartPageState();
 }
 
 class _CartPageState extends State<CartPage> {
-  int cartItem = 3;
-  int cartTotal = 114;
+  bool enable = true;
+  int cartItem = 0;
+  int cartTotal = 0;
 
-  final cartItemList = [
+ /* final cartItemList = [
     {
       'title': 'Ruffled Shirt Style Top',
       'image': 'assets/products/product_20.jpg',
@@ -32,11 +38,15 @@ class _CartPageState extends State<CartPage> {
       'image': 'assets/products/product_17.jpg',
       'price': 30,
       'size': 'L'
-    }
-  ];
+    },
+    
+  ];*/
 
   @override
   Widget build(BuildContext context) {
+   
+   final cart = Provider.of<Cart>(context);
+
     double width = MediaQuery.of(context).size.width * 0.7;
     double widthFull = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -115,7 +125,7 @@ class _CartPageState extends State<CartPage> {
                         color: Colors.black),
                     children: <TextSpan>[
                       TextSpan(
-                        text: ' \$$cartTotal',
+                        text: ' \Rs.${cart.totalAmount}',
                         style: TextStyle(
                           fontFamily: 'Jost',
                           letterSpacing: 0.7,
@@ -133,7 +143,7 @@ class _CartPageState extends State<CartPage> {
                 height: 50.0,
                 child: RaisedButton(
                   child: Text(
-                    'PAY NOW',
+                    'CHECKOUT',
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Jost',
@@ -143,7 +153,7 @@ class _CartPageState extends State<CartPage> {
                     ),
                   ),
                   onPressed: () {
-                    (cartTotal == 0)
+                    (cart.items.length == 0)
                         ? _showDialog()
                         : Navigator.push(
                             context,
@@ -151,23 +161,20 @@ class _CartPageState extends State<CartPage> {
                                 type: PageTransitionType.rightToLeft,
                                 child: Delivery()));
                   },
-                  color: (cartTotal == 0) ? Colors.grey : Colors.red,
+                  color: (cart.items.length == 0) ? Colors.grey : Colors.red,
                 ),
               ),
             ],
           ),
         ),
       ),
-      body: (cartItem == 0)
+      body: (cart.items.length == 0)
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset(
-                    'assets/empty_bag.png',
-                    height: 170.0,
-                  ),
+                 
                   SizedBox(
                     height: 10.0,
                   ),
@@ -225,149 +232,21 @@ class _CartPageState extends State<CartPage> {
                 ],
               ),
             )
-          : ListView.builder(
-              itemCount: cartItemList.length,
-              itemBuilder: (context, index) {
-                final item = cartItemList[index];
-                return Dismissible(
-                  key: Key('$item'),
-                  onDismissed: (direction) {
-                    setState(() {
-                      cartItemList.removeAt(index);
-                      cartItem--;
-                      cartTotal = cartTotal - item['price'];
-                    });
-
-                    // Then show a snackbar.
-                    Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text("Item Removed")));
-                  },
-                  // Show a red background as the item is swiped away.
-                  background: Container(color: Colors.red),
-                  child: Container(
-                    height: (height / 5.0),
-                    child: Card(
-                        elevation: 3.0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Container(
-                                  width: 120.0,
-                                  height: ((height - 200.0) / 4.0),
-                                  child: Image(
-                                    image: AssetImage(item['image']),
-                                    fit: BoxFit.fitHeight,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(10.0),
-                              width: (width - 20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    '${item['title']}',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 7.0,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        'Price:',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 15.0,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      Text(
-                                        '\$${item['price']}',
-                                        style: TextStyle(
-                                          color: Colors.blue,
-                                          fontSize: 15.0,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 7.0,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      RichText(
-                                        text: TextSpan(
-                                          text: 'Size:  ',
-                                          style: TextStyle(
-                                              fontSize: 15.0,
-                                              color: Colors.grey),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                                text: '  ${item['size']}',
-                                                style: TextStyle(
-                                                    fontSize: 15.0,
-                                                    color: Colors.blue)),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      InkWell(
-                                        child: Container(
-                                          color: Colors.grey,
-                                          padding: EdgeInsets.all(3.0),
-                                          child: Text(
-                                            'Remove',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ),
-                                        onTap: () {
-                                          setState(() {
-                                            cartItemList.removeAt(index);
-                                            cartItem--;
-                                            cartTotal =
-                                                cartTotal - item['price'];
-                                          });
-
-                                          // Then show a snackbar.
-                                          Scaffold.of(context).showSnackBar(
-                                              SnackBar(
-                                                  content:
-                                                      Text("Item Removed")));
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        )),
+           : ListView.builder(
+              itemCount: cart.items.length,
+              itemBuilder: (context, index) =>Cartpdt(
+                    cart.items.values.toList()[index].id,
+                    cart.items.keys.toList()[index],
+                    cart.items.values.toList()[index].name,
+                    cart.items.values.toList()[index].imagepath,
+                    cart.items.values.toList()[index].price,
+                    cart.items.values.toList()[index].quantity,
+                    cart.items.values.toList()[index].offer,
+                    cart.items.values.toList()[index].oldprice,
+                    cart.items.values.toList()[index].size,
+                    
+                    )
                   ),
-                );
-              },
-            ),
     );
   }
 }
